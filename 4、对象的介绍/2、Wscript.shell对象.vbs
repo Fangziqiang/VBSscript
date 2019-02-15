@@ -10,7 +10,7 @@
 '	LogEvent
 '	Popup
 '	RegRead
-'	RegWrite
+'	RegWrite 
 '	Run 相当于运行
 '	SendKeys 模拟键盘操作
 '	Exec	运行
@@ -22,4 +22,13 @@ Set wsh = CreateObject("WScript.Shell")
 DesktopPath = wsh.SpecialFolders("desktop")
 'MsgBox DesktopPath
 Set objLnk = wsh.CreateShortcut(DesktopPath & "\testshortcut.lnk")
- 
+'objLnk.Arguments = "1 2 3"
+objLnk.Description = "test shortcut"
+'objLnk.IconLocation = "vbsedit.exe,3"
+objLnk.WindowStyle = 3
+objLnk.TargetPath = "D:\Program Files\Vbsedit\vbsedit.exe"
+objLnk.WorkingDirectory = "D:\Program Files\Vbsedit"
+objLnk.Save
+
+Set wsh = Nothing
+Set objLnk = Nothing
