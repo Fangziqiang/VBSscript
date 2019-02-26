@@ -1,0 +1,24 @@
+
+最近看了些QTP的书，加上平时自己注意的小细节，总结了几点小技巧。
+
+1.QTP在win7上无法抓取web应用程序对象？
+我工作的时候从来没有遇到过这种情况，但是最近新换了一台笔记本，win7 64位的机器，装了QTP10，去识别IE上的对象的时候，IE总是假死，根本无法识别到对象。后来发现，需要在运行QTP跟IE的时候都要右键点击“以管理员身份运行”才可以，问题解决了。后来我又装了QTP11，却又不能识别了，我怀疑是因为QTP11没有能破解的缘故（11似乎目前不能破解成为无限期使用，只能破解成试用多少天）。暂时我还没找到什么解决办法，有达人知道的话指点我一下。
+
+2.QTP IDE中的垂直分割选取
+用过eclipse或者VS的都知道，这两款工具都是可以垂直选取的，有的时候垂直选取会很方便修改代码。
+在QTP中一样是可以的：左上角点击鼠标左键往右拉一定距离不放手，与此同时再点击一下鼠标右键，然后就可以轻松的进行垂直选取了。这样做的好处是可以批量地修改代码，经常编码的同学应该有所感触。
+
+3.ALT+G快捷键
+位置：Edit-Advanced-Go to Function Definition
+脚本短的话这个快捷键体现不出优势，但是假设脚本有几千行上万行的话。。。这个快捷键就会很有用，你可以找到调用这个function的地方，用ALT+G迅速定位到这个function中，查看这个function里的代码。
+
+4.Ctrl+Shift+Space快捷键
+位置：Eidt-Advanced-Argument Info
+很多方法的参数你并不记得，用这个快捷键可以使QTP自动提示参数，这个小功能挺实用。
+
+5.查看隐藏属性
+如图你想拿到class name这个属性，于是你写
+msgbox Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").GetROProperty("Class Name")。但是拿到的值是空的，你可以试一试。我会写 msgbox Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").GetROProperty("micClass")，顺利拿到“webEdit”这个value用spy抓到的属性里确实写的是“Class Name”属性，但是为什么却拿到空值呢？
+答案在注册表里。打开注册表，HKEY_CURRENT_USER\Software\Mercury Interactive\QuickTest Professional\MicTest\Attributes
+当然，你还会发现这里有很多隐属性，这里就是QTP封装属性的集结地，在这里有“micClass”,而“Class Name”是没有的，所以刚才打印出来是个空值。
+欢迎大家补充

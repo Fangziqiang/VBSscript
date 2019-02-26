@@ -30,12 +30,32 @@
 
 'dir /?  显示dir命令用法
 
-Dim objArgs
+'Arguments 属性（WScript 对象）
+'返回 WshArguments 对象（参数集）。
+'object.Arguments
 
+Dim objArgs,sum,s1,s2
+
+'1、Arguments对象
 Set objArgs = WScript.Arguments
 
-For  i = 0 To objArgs.Count-1
-'依次显示WScript.Arguments所有命令
-	WScript.Echo "i=" & i & "Item = " & objArgs.Item(i)
+' dir /a /b
+
+'For  i = 0 To objArgs.Count-1
+'依次显示WScript.Arguments所有命令,在命令行中显示，该脚本执行方式：
+'在命令行中：cscript WScript对象.vbs dir /a /b
+'	WScript.Echo "i= " & i & " Item = " & objArgs.Item(i)
+	
+'Next
+
+'1+到n为止的结果
+s1 = objArgs.Item(0)
+s2 = objArgs.Item(1)
+sum = 0
+For i = s1 To s2
+	sum = sum +i
 Next
 
+'cscript WScript对象.vbs 1 100 计算从1加到100的和
+WScript.Echo "从" & s1 & "到" & s2 _
+	& "之间的整数之和为" & sum
